@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ClientGatewayController } from './client-gateway.controller';
+import { ProductsController } from './products.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { envs, PRODUCTS_MS } from './config';
+import { envs, PRODUCTS_MS } from '../config';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { envs, PRODUCTS_MS } from './config';
         }
       }
     ])],
-  controllers: [ClientGatewayController],
+  controllers: [ProductsController],
   providers: [],
 })
-export class ClientGatewayModule { }
+export class ProductsModule { }

@@ -1,0 +1,22 @@
+services:
+  postgres-db:
+    image: postgres:16.2
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=ordersdb
+    volumes:
+     - postgres_db:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - postgres-db
+    ports:
+      - 8080:8080
+volumes:
+  postgres_db:
+   driver: local

@@ -1,13 +1,13 @@
 import { NestFactory } from '@nestjs/core';
-import { ClientGatewayModule } from './client-gateway.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { envs } from './config/envs';
 import { ClientExceptionFilter } from 'apps/common';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const logger = new Logger('Gateway-main');
 
-  const app = await NestFactory.create(ClientGatewayModule);
+  const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({

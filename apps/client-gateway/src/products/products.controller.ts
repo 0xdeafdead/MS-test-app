@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, HttpException, Inject, InternalServerErrorException, Logger, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
-import { PRODUCTS_MS } from './config';
+import { PRODUCTS_MS } from '../config';
 import { ClientProxy, RpcException } from '@nestjs/microservices';
 import { PaginationDto } from 'apps/common';
 import { catchError, throwError } from 'rxjs';
 
-@Controller()
-export class ClientGatewayController {
-  private logger = new Logger(ClientGatewayController.name)
+@Controller('products')
+export class ProductsController {
+  private logger = new Logger(ProductsController.name)
   constructor(@Inject(PRODUCTS_MS) private readonly productsService: ClientProxy) { }
 
   @Post()
