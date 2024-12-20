@@ -3,13 +3,13 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { ClientProxy } from '@nestjs/microservices';
 import { catchError, of, switchMap, throwError } from 'rxjs';
-import { PRODUCTS_MS } from '../config/constants';
+import { NATS_SERVER } from '../config/constants';
 
 @Injectable()
 export class OrdersService {
-  constructor(@Inject(PRODUCTS_MS) private readonly productsMS: ClientProxy) { }
+  constructor(@Inject(NATS_SERVER) private readonly natsClient: ClientProxy) { }
   create(createOrderDto: CreateOrderDto) {
-    return this.productsMS.send({ cmd: 'validate_products' }, createOrderDto.ids).pipe(
+    return this.natsClient.send({ cmd: 'validate_products' }, createOrderDto.ids).pipe(
       switchMap((res) => {
         return of(res ? "This action will create order" : "Products are not valid. Order not created")
       }),
