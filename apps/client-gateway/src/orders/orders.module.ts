@@ -12,7 +12,7 @@ import { envs, ORDERS_MS } from '../config';
                     port: envs.orderMsPort,
                     host: envs.orderMsHost
                 }
-            }
+            },
         ])
     ],
     controllers: [OrdersController]

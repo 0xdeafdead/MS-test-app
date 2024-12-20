@@ -3,8 +3,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { PrismaClient } from '@prisma/client';
 import { PaginationDto } from '../../../common/pagination.dto';
-import { RpcException } from '@nestjs/microservices';
-import { catchError, from, Observable, of, switchMap, throwError } from 'rxjs';
+import { catchError, from, of, switchMap, throwError } from 'rxjs';
 
 @Injectable()
 export class ProductsService extends PrismaClient implements OnModuleInit {
@@ -12,6 +11,14 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
   onModuleInit() {
     this.$connect();
     this.logger.log('Connected to db')
+  }
+
+  ///should validate if all items exists
+  validateProducts(ids: string[]) {
+    console.log(ids);
+    const x = Boolean(Math.floor(Math.random() * (2 - 0 + 1) + 0));
+    this.logger.log(x ? "Products are valid" : "Products are not valid")
+    return x;
   }
 
   create(createProductDto: CreateProductDto) {

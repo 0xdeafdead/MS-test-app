@@ -23,6 +23,7 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpToRCPExceptionFilter())
 
+  console.log('envs', envs)
   await app.listen();
   logger.log(`ProductMSS running on port ${envs.port}`);
 }

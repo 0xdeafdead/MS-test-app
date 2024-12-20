@@ -15,6 +15,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }))
   app.useGlobalFilters(new ClientExceptionFilter())
+  console.log('envs', envs)
   await app.listen(envs.port);
   logger.log(`Gateway running on port ${envs.port}`);
 }
